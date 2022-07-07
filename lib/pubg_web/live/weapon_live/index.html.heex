@@ -1,0 +1,43 @@
+<h1>Listing Weapons</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.weapon_index_path(@socket, :index)}>
+    <.live_component
+      module={PUBGWeb.WeaponLive.FormComponent}
+      id={@weapon.id || :new}
+      title={@page_title}
+      action={@live_action}
+      weapon={@weapon}
+      return_to={Routes.weapon_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Official name</th>
+      <th>Img URL</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="weapons">
+    <%= for weapon <- @weapons do %>
+      <tr id={"weapon-#{weapon.id}"}>
+        <td><%= weapon.name %></td>
+        <td><%= weapon.description %></td>
+        <td><%= weapon.official_name %></td>
+        <td><%= weapon.img_url %></td>
+        <td>
+          <span><%= live_redirect "Show", to: Routes.weapon_show_path(@socket, :show, weapon) %></span>
+          <span><%= live_patch "Edit", to: Routes.weapon_index_path(@socket, :edit, weapon) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: weapon.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Weapon", to: Routes.weapon_index_path(@socket, :new) %></span>

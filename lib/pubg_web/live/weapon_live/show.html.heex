@@ -1,0 +1,71 @@
+<h1>Show Weapon</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.weapon_show_path(@socket, :show, @weapon)}>
+    <.live_component
+      module={PUBGWeb.WeaponLive.FormComponent}
+      id={@weapon.id}
+      title={@page_title}
+      action={@live_action}
+      weapon={@weapon}
+      return_to={Routes.weapon_show_path(@socket, :show, @weapon)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @weapon.name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @weapon.description %>
+  </li>
+
+  <li>
+    <strong>Official name:</strong>
+    <%= @weapon.official_name %>
+  </li>
+
+  <li>
+    <strong>Is crate:</strong>
+    <%= @weapon.is_crate %>
+  </li>
+
+  <li>
+    <strong>Is main:</strong>
+    <%= @weapon.is_main %>
+  </li>
+
+  <li>
+    <strong>Is pistol:</strong>
+    <%= @weapon.is_pistol %>
+  </li>
+
+  <li>
+    <strong>Is gun:</strong>
+    <%= @weapon.is_gun %>
+  </li>
+
+  <li>
+    <strong>Is console:</strong>
+    <%= @weapon.is_console %>
+  </li>
+
+  <li>
+    <strong>Is pc:</strong>
+    <%= @weapon.is_pc %>
+  </li>
+
+  <li>
+    <strong>Is melee:</strong>
+    <%= @weapon.is_melee %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.weapon_show_path(@socket, :edit, @weapon), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.weapon_index_path(@socket, :index) %></span>

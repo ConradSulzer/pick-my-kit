@@ -1,0 +1,60 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="weapon-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+    <%= label f, :name %>
+    <%= text_input f, :name %>
+    <%= error_tag f, :name %>
+  
+    <%= label f, :description %>
+    <%= text_input f, :description %>
+    <%= error_tag f, :description %>
+  
+    <%= label f, :official_name %>
+    <%= text_input f, :official_name %>
+    <%= error_tag f, :official_name %>
+
+    <%= label f, :img_url %>
+    <%= text_input f, :img_url %>
+    <%= error_tag f, :img_url %>
+  
+    <%= label f, :is_crate %>
+    <%= checkbox f, :is_crate %>
+    <%= error_tag f, :is_crate %>
+  
+    <%= label f, :is_main %>
+    <%= checkbox f, :is_main %>
+    <%= error_tag f, :is_main %>
+  
+    <%= label f, :is_pistol %>
+    <%= checkbox f, :is_pistol %>
+    <%= error_tag f, :is_pistol %>
+  
+    <%= label f, :is_gun %>
+    <%= checkbox f, :is_gun %>
+    <%= error_tag f, :is_gun %>
+  
+    <%= label f, :is_console %>
+    <%= checkbox f, :is_console %>
+    <%= error_tag f, :is_console %>
+  
+    <%= label f, :is_pc %>
+    <%= checkbox f, :is_pc %>
+    <%= error_tag f, :is_pc %>
+  
+    <%= label f, :is_melee %>
+    <%= checkbox f, :is_melee %>
+    <%= error_tag f, :is_melee %>
+  
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>
