@@ -27,6 +27,12 @@ defmodule PUBG.Maps do
     |> Repo.all()
   end
 
+  def list_map_options_with_id do
+    Map
+    |> select([m], {m.name, m.id})
+    |> Repo.all()
+  end
+
   @doc """
   Gets a single map.
 

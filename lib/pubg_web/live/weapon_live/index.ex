@@ -17,13 +17,13 @@ defmodule PUBGWeb.WeaponLive.Index do
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
     |> assign(:page_title, "Edit Weapon")
-    |> assign(:weapon, Weapons.get_weapon!(id))
+    |> assign(:weapon, Weapons.get_weapon!(id, [:maps]))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
     |> assign(:page_title, "New Weapon")
-    |> assign(:weapon, %Weapon{})
+    |> assign(:weapon, %Weapon{maps: []})
   end
 
   defp apply_action(socket, :index, _params) do

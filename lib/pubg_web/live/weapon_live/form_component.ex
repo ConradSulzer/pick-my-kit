@@ -10,11 +10,15 @@ defmodule PUBGWeb.WeaponLive.FormComponent do
     {:ok,
      socket
      |> assign(assigns)
-     |> assign(:changeset, changeset)}
+     |> assign(:changeset, changeset)
+     |> assign(:maps, PUBG.Maps.list_maps())
+     |> assign(:selected_maps, Enum.map(weapon.maps, & &1.id))}
   end
 
   @impl true
   def handle_event("validate", %{"weapon" => weapon_params}, socket) do
+    weapon_params = Map.put_new(weapon_params, "maps", [])
+
     changeset =
       socket.assigns.weapon
       |> Weapons.change_weapon(weapon_params)

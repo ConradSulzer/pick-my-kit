@@ -43,6 +43,8 @@ defmodule PUBG.Weapons.Weapon do
         :ROCKET
       ]
 
+    many_to_many :maps, PUBG.Maps.Map, join_through: Pubg.Weapons.WeaponsMaps, on_replace: :delete
+
     timestamps()
   end
 
@@ -72,5 +74,18 @@ defmodule PUBG.Weapons.Weapon do
       :caliber,
       :type
     ])
+    |> put_map_assoc(attrs)
+  end
+
+  defp put_map_assoc(changeset, %{"maps" => maps}) do
+    put_assoc(changeset, :maps, maps)
+  end
+
+  defp put_map_assoc(changeset, %{maps: maps}) do
+    put_assoc(changeset, :maps, maps)
+  end
+
+  defp put_map_assoc(changeset, _) do
+    changeset
   end
 end

@@ -5,6 +5,10 @@ defmodule PUBG.Maps.Map do
   schema "maps" do
     field :name, :string
 
+    many_to_many :weapons, PUBG.Weapons.Weapon,
+      join_through: Pubg.Weapons.WeaponsMaps,
+      on_replace: :delete
+
     timestamps()
   end
 

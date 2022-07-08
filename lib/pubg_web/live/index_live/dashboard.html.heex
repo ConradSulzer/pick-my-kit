@@ -23,12 +23,12 @@
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <p class="settings-label" style="padding-left: 10px;">Include:</p>
                     <div class="settings-form-input">
-                        <%= label f, :is_crate, "Crate Guns", class: "settings-label" %>
+                        <%= label f, :is_crate, "Crate Guns", class: "settings-label", style: "width: 80px" %>
                         <%= checkbox f, :is_crate, class: "settings-checkbox" %>
                     </div>
 
-                    <div class="settings-form-input">
-                        <%= label f, :is_gun, "Non-Guns", class: "settings-label" %>
+                    <div class="settings-form-input" style="width: 140px">
+                        <%= label f, :is_gun, "Non-Gun Primaries", class: "settings-label", style: "width: 120px; white-space: nowrap;" %>
                         <%= checkbox f, :is_gun, class: "settings-checkbox" %>
                     </div>
                 </div>
