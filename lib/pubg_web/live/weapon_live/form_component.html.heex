@@ -17,6 +17,14 @@
     <%= text_input f, :description %>
     <%= error_tag f, :description %>
   
+    <%= label f, :caliber %>
+    <%= select f, :caliber, Ecto.Enum.dump_values(PUBG.Weapons.Weapon, :caliber) %>
+    <%= error_tag f, :caliber %>
+
+    <%= label f, :type %>
+    <%= select f, :type, Ecto.Enum.dump_values(PUBG.Weapons.Weapon, :type) %>
+    <%= error_tag f, :type %>
+
     <%= label f, :official_name %>
     <%= text_input f, :official_name %>
     <%= error_tag f, :official_name %>

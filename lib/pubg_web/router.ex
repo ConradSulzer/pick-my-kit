@@ -17,7 +17,7 @@ defmodule PUBGWeb.Router do
   scope "/", PUBGWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    live "/", IndexLive.Dashboard, :index
   end
 
   scope "/admin", PUBGWeb do
@@ -29,6 +29,13 @@ defmodule PUBGWeb.Router do
 
     live "/weapons/:id", WeaponLive.Show, :show
     live "/weapons/:id/show/edit", WeaponLive.Show, :edit
+
+    live "/maps", MapLive.Index, :index
+    live "/maps/new", MapLive.Index, :new
+    live "/maps/:id/edit", MapLive.Index, :edit
+
+    live "/maps/:id", MapLive.Show, :show
+    live "/maps/:id/show/edit", MapLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

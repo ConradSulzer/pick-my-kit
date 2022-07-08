@@ -1,0 +1,39 @@
+<div>
+    <.form
+        let={f}
+        for={@changeset}
+        as={:settings_form}
+        id="settings-form"
+        phx-submit="randomize"
+        phx-change="change"
+        class=""
+    >
+        <div class="thin-rounded-border">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+            <p class="settings-title">Settings</p>
+            <div>
+                <%= submit "Pick My Kit!", phx_disable_with: "Picking...", class: ""%>
+            </div>
+            </div>
+            <div class="settings-form-container">
+                <div class="settings-form-input" style="width: 300px;">
+                    <%= label f, :map, "Choose Map", class: "settings-label" %>
+                    <%= select f, :map, @maps, value: @form_params.map, phx_change: "map", class: "settings-checkbox" %>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <p class="settings-label" style="padding-left: 10px;">Include:</p>
+                    <div class="settings-form-input">
+                        <%= label f, :is_crate, "Crate Guns", class: "settings-label" %>
+                        <%= checkbox f, :is_crate, class: "settings-checkbox" %>
+                    </div>
+
+                    <div class="settings-form-input">
+                        <%= label f, :is_gun, "Non-Guns", class: "settings-label" %>
+                        <%= checkbox f, :is_gun, class: "settings-checkbox" %>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </.form>
+</div>

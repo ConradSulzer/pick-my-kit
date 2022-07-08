@@ -15,6 +15,8 @@ defmodule PUBG.Repo.Migrations.CreateWeapons do
       add :is_pc, :boolean, default: false, null: false
       add :is_melee, :boolean, default: false, null: false
       add :is_enabled, :boolean, default: true, null: false
+      add :caliber, :string, null: false
+      add :type, :string, null: false
 
       timestamps()
     end

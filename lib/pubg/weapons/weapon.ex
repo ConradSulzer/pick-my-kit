@@ -15,6 +15,34 @@ defmodule PUBG.Weapons.Weapon do
     field :official_name, :string
     field :img_url, :string
 
+    field :caliber, Ecto.Enum,
+      values: [
+        :"7.62mm",
+        :"5.56mm",
+        :"9mm",
+        :".45 ACP",
+        :"12 Guage",
+        :"300 Magnum",
+        :"5.7mm",
+        :Bolt,
+        :"Mortar Shell",
+        :"40mm Smoke",
+        :Warhead
+      ]
+
+    field :type, Ecto.Enum,
+      values: [
+        :AR,
+        :DMR,
+        :SMG,
+        :LMG,
+        :SHOTGUN,
+        :PISTOL,
+        :CROSS_BOW,
+        :MORTAR,
+        :ROCKET
+      ]
+
     timestamps()
   end
 
@@ -32,13 +60,17 @@ defmodule PUBG.Weapons.Weapon do
       :is_console,
       :is_pc,
       :is_melee,
-      :img_url
+      :img_url,
+      :caliber,
+      :type
     ])
     |> validate_required([
       :name,
       :description,
       :official_name,
-      :img_url
+      :img_url,
+      :caliber,
+      :type
     ])
   end
 end
