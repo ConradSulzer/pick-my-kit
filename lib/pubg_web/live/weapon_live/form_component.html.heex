@@ -25,8 +25,8 @@
     <%= select f, :type, Ecto.Enum.dump_values(PUBG.Weapons.Weapon, :type) %>
     <%= error_tag f, :type %>
 
-    <%= label f, :maps %>
-    <%= multiple_select(f, :maps, Enum.map(@maps, &({&1.name, &1.id})), selected: @selected_maps, style: "height: 100px")%>
+    <%= label f, :map_multi %>
+    <%= multiple_select(f, :map_multi, @map_options, selected: @selected_maps, style: "height: 100px")%>
 
     <%= label f, :official_name %>
     <%= text_input f, :official_name %>

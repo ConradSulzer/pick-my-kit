@@ -6,13 +6,17 @@ defmodule PUBGWeb.WeaponLive.FormComponent do
   @impl true
   def update(%{weapon: weapon} = assigns, socket) do
     changeset = Weapons.change_weapon(weapon)
+    maps = PUBG.Maps.list_maps()
+    map_options = Enum.map(maps, &{&1.name, &1.id})
+    selected_maps = Enum.map(weapon.maps, & &1.id)
 
     {:ok,
      socket
      |> assign(assigns)
      |> assign(:changeset, changeset)
-     |> assign(:maps, PUBG.Maps.list_maps())
-     |> assign(:selected_maps, Enum.map(weapon.maps, & &1.id))}
+     |> assign(:maps, maps)
+     |> assign(:selected_maps, selected_maps)
+     |> assign(:map_options, map_options)}
   end
 
   @impl true
@@ -28,6 +32,7 @@ defmodule PUBGWeb.WeaponLive.FormComponent do
   end
 
   def handle_event("save", %{"weapon" => weapon_params}, socket) do
+    weapon_params = Map.put(weapon_params, :maps, weapon_params["map_multi"])
     save_weapon(socket, socket.assigns.action, weapon_params)
   end
 
