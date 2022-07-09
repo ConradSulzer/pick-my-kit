@@ -1,4 +1,4 @@
-<div>
+<div class="dashboard-container">
     <.form
         let={f}
         for={@changeset}
@@ -16,21 +16,23 @@
             </div>
             </div>
             <div class="settings-form-container">
-                <div class="settings-form-input" style="width: 300px;">
+                <div class="settings-form-input map-input" style="width: 300px;">
                     <%= label f, :map, "Choose Map", class: "settings-label" %>
                     <%= select f, :map, @maps, value: @form_params.map, phx_change: "map", class: "settings-checkbox" %>
                 </div>
-                <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="settings-includes">
                     <p class="settings-label" style="padding-left: 10px;">Include:</p>
-                    <div class="settings-form-input">
-                        <%= label f, :is_crate, "Crate Guns", class: "settings-label", style: "width: 80px" %>
-                        <%= checkbox f, :is_crate, class: "settings-checkbox" %>
-                    </div>
+                    <div class="settings-include-row">
+                        <div class="settings-form-input">
+                            <%= label f, :is_crate, "Crate Guns", class: "settings-label", style: "width: 80px" %>
+                            <%= checkbox f, :is_crate, class: "settings-checkbox" %>
+                        </div>
 
-                    <div class="settings-form-input">
-                        <%= label f, :is_gun, "Non-Guns", class: "settings-label", style: "width: 120px; white-space: nowrap;" %>
-                        <%= checkbox f, :is_gun, class: "settings-checkbox" %>
-                    </div>
+                        <div class="settings-form-input">
+                            <%= label f, :is_gun, "Non-Guns", class: "settings-label", style: "width: 120px; white-space: nowrap;" %>
+                            <%= checkbox f, :is_gun, class: "settings-checkbox" %>
+                        </div>
+                    </div>    
                 </div>
             </div>
         </div>

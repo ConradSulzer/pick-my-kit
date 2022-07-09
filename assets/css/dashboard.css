@@ -1,0 +1,79 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+/* SETTINGS FORM */
+
+.settings-form-container {
+  display: flex;
+  align-items: center;
+}
+
+.settings-form-input {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 10px;
+  width: 120px;
+}
+
+.settings-label {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  width: 90px;
+}
+
+.settings-checkbox {
+  margin: 0 0 0 10px;
+}
+
+.settings-title {
+  margin: 0;
+  padding: 10px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.thin-rounded-border {
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.settings-includes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.settings-include-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
+}
+
+@media only screen and (max-width: 700px) {
+  .settings-form-container {
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .settings-includes {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .settings-include-row {
+    justify-content: space-between;
+  }
+}
