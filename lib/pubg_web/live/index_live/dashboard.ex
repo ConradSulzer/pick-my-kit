@@ -17,7 +17,9 @@ defmodule PUBGWeb.IndexLive.Dashboard do
      |> assign(:changeset, form_changeset())
      |> assign(:maps, maps)
      |> assign(:form_params, %{map: List.first(maps)})
-     |> assign(:kit, nil)}
+     |> assign(:primary, nil)
+     |> assign(:secondary, nil)
+     |> assign(:pistol, nil)}
   end
 
   def handle_event(
@@ -29,16 +31,27 @@ defmodule PUBGWeb.IndexLive.Dashboard do
     attrs = Map.merge(form_params, params)
     changeset = form_changeset(attrs)
 
-    IO.inspect(attrs, label: "THIS ATTRS")
-
     {:noreply,
      socket
      |> assign(form_params: attrs)
      |> assign(changeset: changeset)}
   end
 
-  def handle_event("randomize", _, socket) do
-    {:noreply, socket}
+  def handle_event("randomize", %{"settings_form" => params}, socket) do
+    params =
+      params
+      |> Jason.encode!()
+      |> Jason.decode!(keys: :atoms)
+      |> Map.put(:is_gun, !String.to_existing_atom(params["is_gun"]))
+      |> Map.put(:is_crate, String.to_existing_atom(params["is_crate"]))
+
+    {:ok, primary, secondary, pistol} = PUBG.Weapons.Selector.get_kit(params)
+
+    {:noreply,
+     socket
+     |> assign(:primary, primary)
+     |> assign(:secondary, secondary)
+     |> assign(:pistol, pistol)}
   end
 
   defp form_changeset(attrs \\ %{}) do

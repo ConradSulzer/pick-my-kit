@@ -113,4 +113,21 @@ defmodule PUBG.Maps do
   def change_map(%Map{} = map, attrs \\ %{}) do
     Map.changeset(map, attrs)
   end
+
+  def list_weapons_for_map(params) do
+    {map_name, params} = Elixir.Map.pop(params, :map)
+
+    Map
+    |> join(:inner, [m], w in assoc(m, :weapons))
+    |> where([m], m.name == ^map_name)
+    |> add_filters(params)
+    |> select([m, w], w)
+    |> Repo.all()
+  end
+
+  defp add_filters(query, params) do
+    Enum.reduce(params, query, fn {k, v}, query ->
+      where(query, [m, w], field(w, ^k) == ^v)
+    end)
+  end
 end

@@ -27,13 +27,30 @@
                         <%= checkbox f, :is_crate, class: "settings-checkbox" %>
                     </div>
 
-                    <div class="settings-form-input" style="width: 140px">
-                        <%= label f, :is_gun, "Non-Gun Primaries", class: "settings-label", style: "width: 120px; white-space: nowrap;" %>
+                    <div class="settings-form-input">
+                        <%= label f, :is_gun, "Non-Guns", class: "settings-label", style: "width: 120px; white-space: nowrap;" %>
                         <%= checkbox f, :is_gun, class: "settings-checkbox" %>
                     </div>
                 </div>
             </div>
-            
         </div>
     </.form>
+
+    <div class="weapons-reveal-section">
+        <div class="weapon-container">
+            <%= if @primary do%>
+                <img src={Routes.static_path(@socket, @primary.img_url)} />
+            <% end %>
+        </div>
+        <div class="weapon-container">
+            <%= if @secondary do%>
+                <img src={Routes.static_path(@socket, @secondary.img_url)} />
+            <% end %>
+        </div>
+        <div class="weapon-container">
+            <%= if @pistol do%>
+                <img src={Routes.static_path(@socket, @pistol.img_url)} />
+            <% end %>
+        </div>
+    </div>
 </div>
