@@ -25,7 +25,7 @@ defmodule PUBG.Weapons.Weapon do
         :"300 Magnum",
         :"5.7mm",
         :Bolt,
-        :"Mortar Shell",
+        :"60mm Mortar",
         :"40mm Smoke",
         :Warhead
       ]

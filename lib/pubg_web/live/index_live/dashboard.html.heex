@@ -42,16 +42,19 @@
         <div class="weapon-container">
             <%= if @primary do%>
                 <img src={Routes.static_path(@socket, @primary.img_url)} />
+                <p class="weapon-img-text"><%= @primary.description %><span class="caliber-text"><%= @primary.caliber %></span></p>
             <% end %>
         </div>
         <div class="weapon-container">
             <%= if @secondary do%>
                 <img src={Routes.static_path(@socket, @secondary.img_url)} />
+                <p class="weapon-img-text"><%= @secondary.description %><span class="caliber-text"><%= @secondary.caliber %></span></p>
             <% end %>
         </div>
         <div class="weapon-container">
             <%= if @pistol do%>
                 <img src={Routes.static_path(@socket, @pistol.img_url)} />
+                <p class="weapon-img-text"><%= @pistol.description %><span class="caliber-text"><%= @pistol.caliber %></span></p>
             <% end %>
         </div>
     </div>
