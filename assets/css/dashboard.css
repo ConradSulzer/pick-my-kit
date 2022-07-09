@@ -50,6 +50,7 @@
   font-weight: bold;
   margin: 0;
   width: 90px;
+  white-space: nowrap;
 }
 
 .settings-checkbox {
