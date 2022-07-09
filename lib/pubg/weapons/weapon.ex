@@ -36,6 +36,7 @@ defmodule PUBG.Weapons.Weapon do
         :DMR,
         :SMG,
         :LMG,
+        :SNIPER,
         :SHOTGUN,
         :PISTOL,
         :CROSS_BOW,
