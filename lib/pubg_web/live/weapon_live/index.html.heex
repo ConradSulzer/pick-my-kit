@@ -19,7 +19,7 @@
       <th>Name</th>
       <th>Description</th>
       <th>Caliber</th>
-      <th>Official name</th>
+      <th>Type</th>
       <th>Img URL</th>
       <th></th>
     </tr>
@@ -30,7 +30,7 @@
         <td><%= weapon.name %></td>
         <td><%= weapon.description %></td>
         <td><%= weapon.caliber %></td>
-        <td><%= weapon.official_name %></td>
+        <td><%= weapon.type %></td>
         <td><%= weapon.img_url %></td>
         <td>
           <span><%= live_redirect "Show", to: Routes.weapon_show_path(@socket, :show, weapon) %></span>
