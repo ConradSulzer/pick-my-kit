@@ -25,8 +25,6 @@ defmodule PUBGWeb.MapLive.Show do
         %{"map_weapons" => map_weapons},
         %{assigns: %{weapons: weapons, map: map}} = socket
       ) do
-    IO.inspect(map_weapons, label: "MAP WEAPONS")
-
     selected_weapons =
       Enum.reduce(map_weapons, [], fn {_k, v}, acc ->
         if v != "" do

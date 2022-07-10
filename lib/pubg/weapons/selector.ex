@@ -26,11 +26,11 @@ defmodule PUBG.Weapons.Selector do
   end
 
   def get_kit(params \\ %{}) do
-    with {:ok, primary_one} <- get_primary(params),
+    with params <- clean_params(params),
+         {:ok, primary_one} <- get_primary(params),
          {:ok, primary_two} <- get_primary(params),
          {:ok, primary_two} <- check_primary_match(primary_one, primary_two, params),
-         {:ok, pistol} <-
-           get_pistol(params) do
+         {:ok, pistol} <- get_pistol(params) do
       {:ok, primary_one, primary_two, pistol}
     else
       other ->
@@ -59,5 +59,21 @@ defmodule PUBG.Weapons.Selector do
   defp choose_random(weapons) do
     :rand.seed(:exsss)
     Enum.random(weapons)
+  end
+
+  defp clean_params(%{is_crate: true} = params) do
+    params
+    |> Map.drop([:is_crate])
+    |> clean_params()
+  end
+
+  defp clean_params(%{is_gun: false} = params) do
+    params
+    |> Map.drop([:is_gun])
+    |> clean_params()
+  end
+
+  defp clean_params(params) do
+    params
   end
 end
