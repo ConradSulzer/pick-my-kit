@@ -37,13 +37,19 @@ defmodule PUBGWeb.MapLive.Show do
         end
       end)
 
-    IO.inspect(selected_weapons, label: "SELECTED WEAPONS")
+    case Maps.update_map(map, %{weapons: selected_weapons}) do
+      {:ok, _map} ->
+        {:noreply,
+         socket
+         |> put_flash(:info, "Available weapons updated successfully")
+         |> push_redirect(to: Routes.map_show_path(socket, :show, map.id))}
 
-    result = PUBG.Maps.update_map(map, %{weapons: selected_weapons})
-
-    IO.inspect(result, label: "RESULT")
-
-    {:noreply, socket}
+      {:error, %Ecto.Changeset{} = changeset} ->
+        {:noreply,
+         socket
+         |> assign(:changeset, changeset)
+         |> put_flash(:info, "Error updating map weapons.")}
+    end
   end
 
   defp page_title(:show), do: "Show Map"

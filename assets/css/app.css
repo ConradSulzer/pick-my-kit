@@ -180,6 +180,35 @@ select {
   width: 200px;
 }
 
+label {
+  white-space: nowrap;
+}
+
+.label-with-checkbox {
+  display: flex;
+  width: 90px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.map-weapon-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.medium-vertical-spacing {
+  margin: 20px 0;
+}
+
+.small-icon {
+  width: 16px;
+}
+
+a {
+  color: #e9b200;
+}
+
 @media only screen and (max-width: 700px) {
   .logo-div {
     background-image: url("/images/logo_small.png");

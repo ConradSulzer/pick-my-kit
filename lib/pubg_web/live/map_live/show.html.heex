@@ -22,23 +22,30 @@
 
 </ul>
 
-<span><%= live_patch "Edit", to: Routes.map_show_path(@socket, :edit, @map), class: "button" %></span> |
-<span><%= live_redirect "Back", to: Routes.map_index_path(@socket, :index) %></span>
+<span><%= live_patch "Edit", to: Routes.map_show_path(@socket, :edit, @map), class: "button" %></span>
 
 <.form
-    let={f}
-    for={:map_weapons}
-    id="map-weapons"
-    phx-submit="save">
+  let={f}
+  for={:map_weapons}
+  id="map-weapons"
+  phx-submit="save">
 
+  <div class="thin-rounded-border medium-vertical-spacing">
+    <p class="settings-title">Available Weapons</p>
     <div class="map-weapon-container">
       <%= for weapon <- @weapons do%>
-        <%= label f, weapon.description %>
-        <%= checkbox(f, weapon.description, checked_value: weapon.id, unchecked_value: nil, checked: Enum.any?(@map.weapons, &(&1.id == weapon.id))) %>
+        <div class="label-with-checkbox">
+          <%= label f, weapon.description %>
+          <%= checkbox(f, weapon.description, checked_value: weapon.id, unchecked_value: nil, checked: Enum.any?(@map.weapons, &(&1.id == weapon.id))) %>
+        </div>      
       <% end %>
     </div>
-  
-    <div>
-      <%= submit "Save", phx_disable_with: "Saving..." %>
+    <div style="margin: 10px;">
+      <%= submit "Update", phx_disable_with: "Saving..." %>
     </div>
-  </.form>
+  </div>
+</.form>
+
+<span><%= live_redirect to: Routes.map_index_path(@socket, :index) do%>
+  <span style="display:flex; align-items: center;"><Heroicons.LiveView.icon name="arrow-left" type="outline" class="small-icon"/>Back</span>
+<% end %></span>
