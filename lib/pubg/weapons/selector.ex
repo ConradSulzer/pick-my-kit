@@ -39,7 +39,14 @@ defmodule PUBG.Weapons.Selector do
   end
 
   defp check_primary_match(primary_one, primary_two, params)
-       when primary_one.id == primary_two.id do
+       when primary_one.id == primary_two.id or
+              primary_one.type == primary_two.type or
+              (primary_one.type == :CROSS_BOW and primary_two.type == :SNIPER) or
+              (primary_one.type == :SNIPER and primary_two.type == :CROSS_BOW) or
+              (primary_one.type == :DMR and primary_two.type == :SNIPER) or
+              (primary_one.type == :SNIPER and primary_two.type == :DMR) or
+              (primary_one.type == :CROSS_BOW and primary_two.type == :DMR) or
+              (primary_one.type == :DMR and primary_two.type == :CROSS_BOW) do
     {:ok, weapon} = get_primary(params)
 
     check_primary_match(primary_one, weapon, params)

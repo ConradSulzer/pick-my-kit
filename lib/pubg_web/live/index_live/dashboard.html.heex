@@ -18,7 +18,7 @@
             <div class="settings-form-container">
                 <div class="settings-form-input map-input" style="width: 300px;">
                     <%= label f, :map, "Choose Map", class: "settings-label" %>
-                    <%= select f, :map, @maps, value: @form_params.map, phx_change: "map", class: "settings-checkbox" %>
+                    <%= select f, :map, @maps, value: @form_params.map, class: "settings-checkbox" %>
                 </div>
                 <div class="settings-includes">
                     <p class="settings-label" style="padding-left: 10px;">Include:</p>
