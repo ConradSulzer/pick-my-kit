@@ -186,7 +186,7 @@ label {
 
 .label-with-checkbox {
   display: flex;
-  width: 90px;
+  width: 120px;
   justify-content: space-between;
   align-items: center;
   padding: 10px;

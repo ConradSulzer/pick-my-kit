@@ -35,7 +35,7 @@
     <div class="map-weapon-container">
       <%= for weapon <- @weapons do%>
         <div class="label-with-checkbox">
-          <%= label f, weapon.description %>
+          <%= label f, "#{weapon.description}" %>
           <%= checkbox(f, weapon.description, checked_value: weapon.id, unchecked_value: nil, checked: Enum.any?(@map.weapons, &(&1.id == weapon.id))) %>
         </div>      
       <% end %>
