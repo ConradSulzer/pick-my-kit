@@ -47,7 +47,12 @@ defmodule PUBG.Maps do
       ** (Ecto.NoResultsError)
 
   """
-  def get_map!(id), do: Repo.get!(Map, id)
+  def get_map!(id, preloads \\ []) do
+    Map
+    |> where([m], m.id == ^id)
+    |> preload(^preloads)
+    |> Repo.one()
+  end
 
   @doc """
   Creates a map.

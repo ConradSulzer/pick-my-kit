@@ -17,5 +17,18 @@ defmodule PUBG.Maps.Map do
     map
     |> cast(attrs, [:name])
     |> validate_required([:name])
+    |> put_map_assoc(attrs)
+  end
+
+  defp put_map_assoc(changeset, %{"weapons" => maps}) do
+    put_assoc(changeset, :weapons, maps)
+  end
+
+  defp put_map_assoc(changeset, %{weapons: maps}) do
+    put_assoc(changeset, :weapons, maps)
+  end
+
+  defp put_map_assoc(changeset, _) do
+    changeset
   end
 end

@@ -24,3 +24,21 @@
 
 <span><%= live_patch "Edit", to: Routes.map_show_path(@socket, :edit, @map), class: "button" %></span> |
 <span><%= live_redirect "Back", to: Routes.map_index_path(@socket, :index) %></span>
+
+<.form
+    let={f}
+    for={:map_weapons}
+    id="map-weapons"
+    phx-submit="save">
+
+    <div class="map-weapon-container">
+      <%= for weapon <- @weapons do%>
+        <%= label f, weapon.description %>
+        <%= checkbox(f, weapon.description, checked_value: weapon.id, unchecked_value: nil, checked: Enum.any?(@map.weapons, &(&1.id == weapon.id))) %>
+      <% end %>
+    </div>
+  
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
